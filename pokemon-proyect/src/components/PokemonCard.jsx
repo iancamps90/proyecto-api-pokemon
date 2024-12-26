@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+import "./PokemonCard.css"
 
 
 function PokemonCard() {

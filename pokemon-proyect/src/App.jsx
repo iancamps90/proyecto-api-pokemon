@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import './index.css'
 import PokemonList from './components/PokemonList'
 
 function App() {
