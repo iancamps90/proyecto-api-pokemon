@@ -13,4 +13,6 @@ Currently, two official plugins are available:
 4. se crea el set de pokemon card
 5. se añade el nombre, imagen y texto.
 6. se crea un identificador para se muestre si el pokemon existe o no con un terciario.
-7. 
+7. se añaden una hoja de estilos para los pokemon card y estilos generales.
+8. se crea archivo para solicitar un array de 10 pokemon  y mostrarlos.
+9. 
