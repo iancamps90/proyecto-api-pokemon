@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import PokemonCard from "./PokemonCard"
+import PokemonCard from "./PokemonCard";
+import "./PokemonList.css";
 
 
 
-function PokemonList() {
+function PokemonList(props) {
 
     const [pokemons, setPokemons] = useState([]);
 
     useEffect(() => {
-        getPokemons(10);
+        getPokemons(30);
     },[])
 
     const fetchPokemon = async (index) => {
@@ -29,7 +30,11 @@ function PokemonList() {
     }
 
     const pokemonCards = pokemons.map((pokemon) => {
-        return <PokemonCard key={pokemon.id} pokemon={pokemon}></PokemonCard>
+        return <PokemonCard
+            key={pokemon.id}
+            pokemon={pokemon}
+            selectPokemon={props.selectPokemon}
+        ></PokemonCard>
     })
 
 
