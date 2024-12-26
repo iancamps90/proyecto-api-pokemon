@@ -17,4 +17,7 @@ Currently, two official plugins are available:
 8. se crea archivo para solicitar un array de 10 pokemon  y mostrarlos.
 9. se crea un fichero de detalles para cuando clikes una cards te de informacion de ese pokemon
 10. se le da diseño al pokemon details.
-11. 
+11. se añade un hover a la card
+12. vamos a crear un formulario para recoger la informacion del usuario que 30 pokemons quiere recoger por ejemplo del 30-60..
+13. se crea getform con setFrom y setTo.
+14. se crea un submit para enviar el formulario de eleccion de pokemons
