@@ -21,7 +21,7 @@ function PokemonDetails2(props) {
                 </h3>
             </div>
 
-            <div className="pokemon-container pokemon-2">
+            <div className="pokemon-container">
                 <h2 className="text">{pokemon.name}</h2>
                 <img
                     src={pokemon.sprites.front_default}

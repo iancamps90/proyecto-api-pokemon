@@ -42,4 +42,11 @@ Si pokemon no se define correctamente (por ejemplo, está undefined o tiene valo
 Corrección:
 Asegúrate de manejar correctamente los valores por defecto o estados iniciales
 28. se cambia a render el componente hoc.
-29. 
+29. se añade npm i react-router-dom dependencias para crear rutas
+30. vamos a crear paginas
+31. creamos la home page y se crea y añade el estilo
+32. se crea pokemosn page y se copia todo lo que estaba en app.jsx el componente raiz
+33. en el componente raiz se crean las rutas (<Routes></Routes>) de las paginas creadas
+34. en path se le añade la ruta q qeremos acceder y en element marcamos la pagina creada.
+35. se añade en el main que queremos utilizar las rutas <BrowserRouter></BrowserRouter>.
+36. se da estilos se añade logo y enlace a la pagina de lista de pokemon desde el boton entrar del home

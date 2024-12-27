@@ -44,3 +44,21 @@
     transform: rotate(5deg) scale(1.1);
     background-color: lightgoldenrodyellow;
 }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .title {
+        font-size: 2em;
+        /* Reducir el tamaño del título en pantallas pequeñas */
+    }
+
+    .logo {
+        max-width: 350px;
+        /* Reducir el tamaño máximo del logo */
+    }
+
+    .link {
+        padding: 8px 16px;
+        /* Reducir el tamaño del botón */
+    }
+}
