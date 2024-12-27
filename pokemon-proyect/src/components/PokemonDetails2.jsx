@@ -35,4 +35,4 @@ function PokemonDetails2(props) {
     );
 }
 
-export default DetailsWrapper(PokemonDetails2);
+export default PokemonDetails2;

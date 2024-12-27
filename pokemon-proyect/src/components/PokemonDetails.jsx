@@ -2,13 +2,13 @@ import { useState } from "react";
 import "./PokemonDetails.css";
 import DetailsWrapper from "../hoc/DetailsWrapper";
 
-
+// Componente funcional de detalles del Pokémon
 function PokemonDetails(props) {
 
     const { pokemon, likes, increaseLikes } = props;
 
     if (!pokemon || !pokemon.sprites) {
-        return <p>Loading...</p>;
+        return <p>Loading...</p>;// Muestra un mensaje de carga si no hay datos
     }
 
 
@@ -35,5 +35,5 @@ return (
     </section>
 )}
 
-export default DetailsWrapper(PokemonDetails);
+export default PokemonDetails;
 

@@ -41,3 +41,5 @@ Manejo de props.pokemon en PokemonDetails y PokemonDetails2
 Si pokemon no se define correctamente (por ejemplo, está undefined o tiene valores faltantes), el editor puede marcar errores.
 Corrección:
 Asegúrate de manejar correctamente los valores por defecto o estados iniciales
+28. se cambia a render el componente hoc.
+29. 
