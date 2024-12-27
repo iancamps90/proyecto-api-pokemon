@@ -9,18 +9,25 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 12px;
+}
 
-    .text {
-        margin: 0;
-    }
+.text {
+    margin: 0;
+}
 
-    .pokemon-img{
-        width: 100%;
-    }
+
+.pokemon-img{
+    width: 100%;
+}
+.pokemon-img:hover {
+    transform: rotate(10deg) scale(1.1);
+    
 }
 
 .pokemon-card:hover{
     background-color: darkgoldenrod;
     cursor: pointer;
     color: black;
+    
 }

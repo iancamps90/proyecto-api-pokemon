@@ -3,29 +3,40 @@ import './App.css'
 import './index.css'
 import PokemonList from './components/PokemonList'
 import PokemonDetails from './components/PokemonDetails';
+import PokemonDetails2 from './components/PokemonDetails2';
+
+
 
 function App() {
-  
-  const [selectedPokemon, setSelectedPokemon] = useState();
+  // variable pokemon 1 selecionado
+  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  // variable pokemon 2 selecionado
+  const [selectedPokemon2, setSelectedPokemon2] = useState(null);
 
   return (
-    <>
-      
-      {selectedPokemon && (
-        <div>
-          <h2>Pokemon Seleccionado</h2>
-          <PokemonDetails pokemon= {selectedPokemon} ></PokemonDetails>
-        </div>
-      )}
-      <h2>Lista de Pokemons</h2>
+    
+      <main className='main'>
+        <h2>Pokemons Seleccionados</h2>
+          
+        {/* Mostrar detalles del Pokémon 1 si está seleccionado */}
+        {selectedPokemon && (
+          <PokemonDetails pokemon={selectedPokemon} />
+        )}
+          
+        {/* Mostrar detalles del Pokémon 2 si está seleccionado */}
+        {selectedPokemon2 && (
+          <PokemonDetails2 pokemon={selectedPokemon2} />
+        )}
 
-      <PokemonList selectPokemon= {setSelectedPokemon} ></PokemonList>
+        <h2>Lista de Pokemons</h2>
 
-
-
-
-    </>
-  )
+      {/* Pasar funciones de selección como props a la lista */}
+      <PokemonList
+        selectPokemon={setSelectedPokemon}
+        selectPokemon2={setSelectedPokemon2}
+      />
+    </main>
+  );
 }
 
-export default App
+export default App;

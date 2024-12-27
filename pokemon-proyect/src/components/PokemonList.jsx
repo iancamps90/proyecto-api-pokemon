@@ -36,20 +36,23 @@ function PokemonList(props) {
         }
     };
 
-
+    // funcion indicar la seleccion de pokemon
     const pokemonCards = pokemons.map((pokemon) => {
-        return <PokemonCard
-            key={pokemon.id}
-            pokemon={pokemon}
-            selectPokemon={props.selectPokemon}
-        ></PokemonCard>
-    })
+        return (
+            <PokemonCard
+                key={pokemon.id}
+                pokemon={pokemon}
+                selectPokemon={props.selectPokemon}
+                selectPokemon2={props.selectPokemon2}
+            ></PokemonCard>
+        );
+    });
 
 
     return (
 
         <div>
-            <GetForm getPokemons= {getPokemons}></GetForm>
+            <GetForm getPokemons = {getPokemons}></GetForm>
             <ul className="pokemon-list">
                 {pokemonCards}
             </ul>

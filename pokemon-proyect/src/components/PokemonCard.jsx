@@ -4,8 +4,8 @@ import "./PokemonCard.css"; // Importamos los estilos para la tarjeta de Pokémo
 
 // Componente funcional que recibe las propiedades (props)
 function PokemonCard(props) {
-
-    const { pokemon, selectPokemon } = props;
+    
+    const { pokemon, selectPokemon, selectPokemon2 } = props;
 
     // Aseguramos que el objeto pokemon y sus propiedades existen antes de intentar renderizarlas
     if (!pokemon || !pokemon.id) {
@@ -16,7 +16,9 @@ function PokemonCard(props) {
 
     return pokemon.id ? (
         <li className="pokemon-card"
-        onClick={() => selectPokemon(pokemon)}>
+            onClick={() => selectPokemon(pokemon)} 
+            onAuxClick = {() => selectPokemon2(pokemon)}
+        >
             <h2 className="pokemon-name">{pokemon.name} </h2>
             <img src={pokemon.sprites.front_default}
                 alt="pokemon img" className="pokemon-img" />

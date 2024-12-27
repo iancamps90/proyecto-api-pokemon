@@ -25,4 +25,19 @@ Currently, two official plugins are available:
 16. se crea estilos generales en app.css
 17. se comenta alguna partes del proyecto
 18. vamos a crear una carperta contexto dentro de components para el contexto de la API.
-19. ahora utilizamos el contexto tras la llamada a la api 
+19. ahora utilizamos el contexto tras la llamada a la api.
+20. se crean componentes de alto nivel, vamos a modificar los detalles del pokemon seleccionado para añadir un contador de likes.
+21. se implenta un contador de likes al pokemon selecionado
+22. se crea un componente parecido al pokemon details con otros detalles, crean un componente de mayor nivel llevando la copia de pokemondetails a pokemondetails 2
+23. se implenta los eventos en app.jsx para selecionar detalles de dos pokemons 
+24. se añaden nuevos estilos a los detalles de pokemon selecionado tanto para el pokemon 1 y 2 
+25. creamos carpeta hoc para la logica de los pokemons selecionados y le creamos un fichero para los detalles de la logica de selecion de pokemons.
+26. se elemina de las paginas de details las varibles de likes y contador para añadirlo como props que lo recibe de los componentes de alto nivel.
+27. se corijen algunos errores = El editor no reconoce el HOC como un componente válido
+Algunos editores o linters necesitan indicaciones explícitas para entender que el HOC es un componente React válido.
+Corrección:
+Añade anotaciones de tipos con JSDoc para ayudar al editor.
+Manejo de props.pokemon en PokemonDetails y PokemonDetails2
+Si pokemon no se define correctamente (por ejemplo, está undefined o tiene valores faltantes), el editor puede marcar errores.
+Corrección:
+Asegúrate de manejar correctamente los valores por defecto o estados iniciales
