@@ -124,6 +124,16 @@ Pasos seguidos en el desarrollo del proyecto:
 39. Navegación con Ruta Paramétrica
 
     Se utiliza una ruta paramétrica para identificar el Pokémon seleccionado, extrayendo el parámetro id directamente de la URL gracias al hook useParams de React Router. Esto permite que cada Pokémon tenga una página dinámica basada en su ID único.
+
+40. se crea la pagina de error para que si introduces cualquier direccion no valida te lleve hay y un link para volver al home
+
+41. se va a crear una autentificacion para que no entren usuarios no permitidos
+
+42. creamos las variables const [hasAcces, setAcces] = useState(true); 
+
+43. creamos en la carpeta context archivo para los usuarios verificar si estan logeados o no
+
+44. 
     
 
 

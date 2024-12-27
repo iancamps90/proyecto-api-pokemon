@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import PokemonsPage from './pages/PokemonsPage';
 import PokemonPage from './pages/PokemonPage';
+import ErrorPage from './pages/ErrorPage';
 
 
 
@@ -14,6 +15,9 @@ function App() {
       <Route path='/' element={<HomePage />} />
       <Route path='/pokemons' element={<PokemonsPage />} />
       <Route path='/pokemon/:id' element={<PokemonPage />} />
+
+
+      <Route path='*' element={<ErrorPage />} />
     </Routes>
   )
   

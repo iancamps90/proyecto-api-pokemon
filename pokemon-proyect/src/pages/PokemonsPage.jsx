@@ -1,18 +1,24 @@
 
-import { useState } from 'react'
-import PokemonList from '../components/PokemonList'
-import PokemonDetails from '../components/PokemonDetails';
-import PokemonDetails2 from '../components/PokemonDetails2';
-import DetailsWrapper from '../hoc/DetailsWrapper';
+import { useContext, useState } from "react";
+import { UserContext } from "../context/user.context"; // Importa el contexto correcto
+import PokemonList from "../components/PokemonList";
+import PokemonDetails from "../components/PokemonDetails";
+import PokemonDetails2 from "../components/PokemonDetails2";
+import DetailsWrapper from "../hoc/DetailsWrapper";
+import { Navigate } from "react-router-dom";
 
 function PokemonsPage() {
 
-    // variable pokemon 1 selecionado
+    const {user} = useContext(UserContext);
+
+    // Validación de usuario logueado
+    if (!user.isLoggedIn) return < Navigate to={"/error"} />;
+
+    // Variables de estado para los Pokémon seleccionados
     const [selectedPokemon, setSelectedPokemon] = useState(null);
-    // variable pokemon 2 selecionado
     const [selectedPokemon2, setSelectedPokemon2] = useState(null);
 
-    // funciona que devuelve la logica 
+    // Función que devuelve la lógica de detalles del primer Pokémon
     const getDetails1 = (likes, increaseLikes) => {
         return (
             <PokemonDetails
@@ -23,6 +29,7 @@ function PokemonsPage() {
         );
     };
 
+    // Función que devuelve la lógica de detalles del segundo Pokémon
     const getDetails2 = (likes, increaseLikes) => {
         return (
             <PokemonDetails2
