@@ -1,0 +1,38 @@
+/* App.css */
+
+/* Fondo y fuente general */
+body {
+    background-color: #f5f5f5;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Contenedor principal */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* Títulos principales */
+h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+/* Título de los pokemons seleccionados */
+h2.selected-pokemon {
+    color: #4caf50;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+
+

@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PokemonCard from "./PokemonCard";
 import "./PokemonList.css";
 import GetForm from "./GetForm";
+import { PokemonContext } from "../context/pokemon.context";
 
 
 
 function PokemonList(props) {
 
-    const [pokemons, setPokemons] = useState([]);
+    const {pokemons, setPokemons} = useContext(PokemonContext);
 
     useEffect(() => {
         getPokemons(1, 30);
@@ -15,20 +16,26 @@ function PokemonList(props) {
 
     const fetchPokemon = async (index) => {
         const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
-    const data = await response.json();
+        const data = await response.json();
+        console.log(data); // Verifica la estructura del objeto pokemon
         return data;
     }
 
     const getPokemons = async (from, to) => {
-        const pkmArr = [];
+        try {
+            const pkmArr = [];
 
-        for (let i = from; i <= to; i++) {
-            const pokemon = await fetchPokemon(i);
-            pkmArr.push(pokemon);
+            for (let i = from; i <= to; i++) {
+                const pokemon = await fetchPokemon(i);
+                pkmArr.push(pokemon);
+            }
+
+            setPokemons(pkmArr); // Actualiza el estado después de cargar todos los datos
+        } catch (error) {
+            console.error("Error fetching Pokémon:", error); // Manejo de errores
         }
+    };
 
-        setPokemons(pkmArr);
-    }
 
     const pokemonCards = pokemons.map((pokemon) => {
         return <PokemonCard

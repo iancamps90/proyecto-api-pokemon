@@ -21,3 +21,8 @@ Currently, two official plugins are available:
 12. vamos a crear un formulario para recoger la informacion del usuario que 30 pokemons quiere recoger por ejemplo del 30-60..
 13. se crea getform con setFrom y setTo.
 14. se crea un submit para enviar el formulario de eleccion de pokemons
+15. se crea un estilo para el formulario getform
+16. se crea estilos generales en app.css
+17. se comenta alguna partes del proyecto
+18. vamos a crear una carperta contexto dentro de components para el contexto de la API.
+19. ahora utilizamos el contexto tras la llamada a la api 
