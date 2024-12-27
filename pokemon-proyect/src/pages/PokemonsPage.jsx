@@ -5,7 +5,7 @@ import PokemonDetails from '../components/PokemonDetails';
 import PokemonDetails2 from '../components/PokemonDetails2';
 import DetailsWrapper from '../hoc/DetailsWrapper';
 
-function PokemonsPages() {
+function PokemonsPage() {
 
     // variable pokemon 1 selecionado
     const [selectedPokemon, setSelectedPokemon] = useState(null);
@@ -64,4 +64,4 @@ function PokemonsPages() {
 
 }
 
-export default PokemonsPages
+export default PokemonsPage

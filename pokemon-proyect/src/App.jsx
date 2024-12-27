@@ -2,7 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import PokemonsPages from './pages/PokemonsPage';
+import PokemonsPage from './pages/PokemonsPage';
+import PokemonPage from './pages/PokemonPage';
 
 
 
@@ -10,8 +11,9 @@ import PokemonsPages from './pages/PokemonsPage';
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<HomePage/>} />
-      <Route path='/pokemons' element={<PokemonsPages />} />
+      <Route path='/' element={<HomePage />} />
+      <Route path='/pokemons' element={<PokemonsPage />} />
+      <Route path='/pokemon/:id' element={<PokemonPage />} />
     </Routes>
   )
   
