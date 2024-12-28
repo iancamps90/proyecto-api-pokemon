@@ -3,7 +3,11 @@ import "./HomePage.css";
 import logo from "../assets/logo1.png";
 import { Link } from "react-router-dom";
 
+
+
 function HomePage() {
+
+    
 
     return (
         <section id="home-page">

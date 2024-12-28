@@ -126,20 +126,17 @@ Pasos seguidos en el desarrollo del proyecto:
     Se utiliza una ruta paramétrica para identificar el Pokémon seleccionado, extrayendo el parámetro id directamente de la URL gracias al hook useParams de React Router. Esto permite que cada Pokémon tenga una página dinámica basada en su ID único.
 
 40. se crea la pagina de error para que si introduces cualquier direccion no valida te lleve hay y un link para volver al home
-
 41. se va a crear una autentificacion para que no entren usuarios no permitidos
-
 42. creamos las variables const [hasAcces, setAcces] = useState(true); 
-
 43. creamos en la carpeta context archivo para los usuarios verificar si estan logeados o no
-
 44. Vamos añadir navegabilidad para acceder a la pagina pokemon al selecionar un pokemon podemos ver los detalles de cada uno.
-
 45. se añade un try-catch a la funcion del fecth pokemon.
-
 46. vamos a profesionalizar un poco el codigo que tenemos hasta ahora separando la logica que tenemos al contexto.
-
 47. hemos limpiado el componente funcion de fecht de pokemon list al contexto separando la logica del codigo y en pokemon page eliminamos la funcion fetch y añadimos el contexto.
+48. vamos a ver tecnicas de optimizacion del proyecto con memo y use memo, aplicamos tecnicas renderizacion para que no vuelva a recargar informacion.
+49. utilizamos tecnicas de optimizacion como el code spliiting y lazy loading(de manera perezosa) para evitar que cargue paginas que no necesita (no necesario proyectos pequeños).
+50. se instala y se crean ficheros en la raiz del proyecto de testing con babel y jest para  realizan pruebas unitarias.
+51. crea carpeta mocks para sumilar ficheros en pruebas unitarias
     
 
 

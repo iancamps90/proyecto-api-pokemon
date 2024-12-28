@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import PokemonCard from "./PokemonCard";
 import "./PokemonList.css";
 import GetForm from "./GetForm";
@@ -11,7 +11,7 @@ function PokemonList(props) {
     const {pokemons, setPokemons, fetchPokemon} = useContext(PokemonContext);
 
     useEffect(() => {
-        getPokemons(1, 30);
+        getPokemons(1, 9);
     },[])
 
     
@@ -32,7 +32,9 @@ function PokemonList(props) {
     };
 
     // funcion indicar la seleccion de pokemon
-    const pokemonCards = pokemons.map((pokemon) => {
+    const pokemonCards = useMemo(
+        () =>
+            pokemons.map((pokemon) => { //obtenemos todas las tarjetas a traves del array de pokemon
         return (
             <PokemonCard
                 key={pokemon.id}
@@ -41,7 +43,9 @@ function PokemonList(props) {
                 selectPokemon2={props.selectPokemon2}
             ></PokemonCard>
         );
-    });
+            }),
+        [pokemons] // segundo argumento
+    );  
 
 
     return (

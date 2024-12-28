@@ -1,5 +1,6 @@
-// import { useEffect, useState } from "react"; // Importamos los hooks necesarios de React
+//import { useEffect, useState } from "react"; // Importamos los hooks necesarios de React
 import "./PokemonCard.css"; // Importamos los estilos para la tarjeta de Pokémon
+import React from "react";
 
 
 // Componente funcional que recibe las propiedades (props)
@@ -21,8 +22,8 @@ function PokemonCard(props) {
         >
             <h2 className="pokemon-name">{pokemon.name} </h2>
             <img src={pokemon.sprites.front_default}
-                alt="pokemon img" className="pokemon-img" />
-            <h3 className="text">HP: {pokemon.stats[0].base_stat} </h3>
+                alt="pokemon img" className="pokemon-img-list" />
+            
         </li>
     ) : (
         <p className="loading">Loading...</p>
@@ -30,4 +31,4 @@ function PokemonCard(props) {
     
 }
 
-export default PokemonCard
+export default React.memo(PokemonCard);
