@@ -133,7 +133,13 @@ Pasos seguidos en el desarrollo del proyecto:
 
 43. creamos en la carpeta context archivo para los usuarios verificar si estan logeados o no
 
-44. 
+44. Vamos añadir navegabilidad para acceder a la pagina pokemon al selecionar un pokemon podemos ver los detalles de cada uno.
+
+45. se añade un try-catch a la funcion del fecth pokemon.
+
+46. vamos a profesionalizar un poco el codigo que tenemos hasta ahora separando la logica que tenemos al contexto.
+
+47. hemos limpiado el componente funcion de fecht de pokemon list al contexto separando la logica del codigo y en pokemon page eliminamos la funcion fetch y añadimos el contexto.
     
 
 

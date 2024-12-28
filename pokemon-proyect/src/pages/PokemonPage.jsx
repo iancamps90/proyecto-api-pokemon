@@ -1,47 +1,67 @@
-import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // Importa useNavigate
-import "./PokemonPage.css";
+import { useContext, useEffect, useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom"; // Importa useNavigate
+
+import "./PokemonPage.css"; // Estilos específicos del componente
+import { PokemonContext } from "../context/pokemon.context";
 
 function PokemonPage() {
+
+
+    const { fetchPokemon } = useContext(PokemonContext);
+    
+
     const { id } = useParams(); // Extrae el id actual de la URL
     const navigate = useNavigate(); // Hook para cambiar de ruta
-    const [pokemon, setPokemon] = useState();
+    const [pokemon, setPokemon] = useState(); // Estado para almacenar la información del Pokémon.
+    const [error, setError] = useState(); // variable reactiva por si hay algun errro en el fecth
 
+    // useEffect se ejecuta cada vez que cambia el valor de 'id'
     useEffect(() => {
-        fetchPokemon(id);
+        getPokemon(id);
     }, [id]); // Se ejecuta cada vez que el id cambia
+    // Función para obtener los datos de un Pokémon desde la API de PokeAPI
 
-    const fetchPokemon = async (id) => {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-        const data = await response.json();
-        setPokemon(data);
+    const getPokemon = async (id) => { // Llama a la API para obtener los datos
+        try {
+            const pokemon = await fetchPokemon(id);
+            setPokemon(pokemon);
+        } catch (e) {
+            setError(e); // Si ocurre un error, lo guardamos en el estado 'error'
+        }
     };
 
+    // Función para navegar al Pokémon anterior
     const goToPrevious = () => {
         const prevId = Math.max(1, parseInt(id) - 1); // Evita IDs menores a 1
-        navigate(`/pokemon/${prevId}`); // Navega al Pokémon anterior
+        navigate(`/pokemons/${prevId}`); // Navega al Pokémon anterior
     };
 
+    // Función para navegar al siguiente Pokémon
     const goToNext = () => {
         const nextId = parseInt(id) + 1; // Incrementa el ID
-        navigate(`/pokemon/${nextId}`); // Navega al Pokémon siguiente
+        navigate(`/pokemons/${nextId}`); // Navega al Pokémon siguiente
     };
 
     return (
         <section id="pokemon-page">
-            {pokemon ? (
+            {error ? ( // Si ocurre un error, mostramos el mensaje de error
                 <div>
-                    <h2>{pokemon.name.toUpperCase()}</h2>
-                    <img
-                        src={pokemon.sprites.front_default}
-                        alt="pokemon img"
-                        className="pokemon-img"
-                    />
-                    <h3>Vida: {pokemon.stats[0].base_stat}</h3>
-                    <h3>Ataque: {pokemon.stats[1].base_stat}</h3>
-                    <h3>Defensa: {pokemon.stats[2].base_stat}</h3>
+                    <h2>No se ha encontrado ningún pokemon</h2>
+                    <Link to= "/pokemons">Volver a la lista de pokemons</Link>
                 </div>
-            ) : (
+            ) : pokemon ? ( // Si hay datos del Pokémon, los mostramos
+                            <div>
+                                <h2>{pokemon.name.toUpperCase()}</h2>
+                                <img
+                                    src={pokemon.sprites.front_default}
+                                    alt="pokemon img"
+                                    className="pokemon-img"
+                                />
+                                <h3>Vida: {pokemon.stats[0].base_stat}</h3>
+                                <h3>Ataque: {pokemon.stats[1].base_stat}</h3>
+                                <h3>Defensa: {pokemon.stats[2].base_stat}</h3>
+                            </div>
+                ) : ( // Si no hay datos de Pokémon y no hay error, mostramos "Cargando..."
                 <div>
                     <h2>Cargando...</h2>
                 </div>

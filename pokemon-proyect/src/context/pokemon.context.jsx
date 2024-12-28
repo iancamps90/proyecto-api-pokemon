@@ -6,11 +6,18 @@ function PokemonProviderWrapper(props) {
 
     const [pokemons, setPokemons] = useState([]);
 
+    const fetchPokemon = async (index) => {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
+        const data = await response.json();
+        console.log(data); // Verifica la estructura del objeto pokemon
+        return data;
+    };
+
     return (
-        <PokemonContext.Provider value={{pokemons, setPokemons}}>
+        <PokemonContext.Provider value={{ pokemons, setPokemons, fetchPokemon}}>
             {props.children}
         </PokemonContext.Provider>
-    )
+    );
 }
 
 export { PokemonContext, PokemonProviderWrapper };

@@ -8,18 +8,13 @@ import { PokemonContext } from "../context/pokemon.context";
 
 function PokemonList(props) {
 
-    const {pokemons, setPokemons} = useContext(PokemonContext);
+    const {pokemons, setPokemons, fetchPokemon} = useContext(PokemonContext);
 
     useEffect(() => {
         getPokemons(1, 30);
     },[])
 
-    const fetchPokemon = async (index) => {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
-        const data = await response.json();
-        console.log(data); // Verifica la estructura del objeto pokemon
-        return data;
-    }
+    
 
     const getPokemons = async (from, to) => {
         try {
