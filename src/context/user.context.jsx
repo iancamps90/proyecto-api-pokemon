@@ -1,4 +1,5 @@
-import {createContext, useState} from "react"
+// SRC/CONTEXT/USER.CONTEXT.JSX
+import { createContext, useState } from "react"
 
 const UserContext = createContext();
 

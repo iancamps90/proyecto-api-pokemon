@@ -1,3 +1,4 @@
+// SRC/HOC/DETAILSWRAPPER.JSX
 import { useState } from "react"; 
 
 /**

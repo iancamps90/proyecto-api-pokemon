@@ -1,3 +1,4 @@
+// SRC/PAGES/POKEMONPAGE.JSX
 import { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom"; // Importa useNavigate
 

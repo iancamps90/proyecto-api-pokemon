@@ -1,4 +1,4 @@
-
+// SRC/PAGES/POKEMONSPAGE.JSX
 import { useContext, useState } from "react";
 import { UserContext } from "../context/user.context"; // Importa el contexto correcto
 import PokemonList from "../components/PokemonList";

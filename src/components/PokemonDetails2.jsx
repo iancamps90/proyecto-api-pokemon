@@ -1,3 +1,4 @@
+// SRC/COMPONENTS/POKEMONDETAILS2.JSX
 import { useState } from "react";
 import "./PokemonDetails.css";
 import DetailsWrapper from "../hoc/DetailsWrapper";

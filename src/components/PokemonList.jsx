@@ -1,3 +1,4 @@
+// SRC/COMPONENTS/POKEMONLIST.JSX
 import { useContext, useEffect, useMemo, useState } from "react";
 import PokemonCard from "./PokemonCard";
 import "./PokemonList.css";

@@ -1,3 +1,4 @@
+// SRC/APP.JSX
 import { lazy, Suspense, useState } from 'react'  // Importamos 'lazy' para cargar los componentes de forma perezosa y 'Suspense' para manejar el estado de carga
 import './App.css'
 import { Route, Routes } from 'react-router-dom'; // Importamos los componentes necesarios para manejar las rutas en React Router
@@ -5,6 +6,7 @@ import HomePage from './pages/HomePage';
 //import PokemonsPage from './pages/PokemonsPage';
 //import PokemonPage from './pages/PokemonPage';
 //import ErrorPage from './pages/ErrorPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Importamos las páginas de forma perezosa (lazy loading)
 // Esto solo cargará las páginas cuando realmente se necesiten, optimizando el rendimiento

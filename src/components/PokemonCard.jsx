@@ -1,3 +1,4 @@
+// SRC/COMPONENTS/POKEMONCARD.JSX
 //import { useEffect, useState } from "react"; // Importamos los hooks necesarios de React
 import "./PokemonCard.css"; // Importamos los estilos para la tarjeta de Pokémon
 import React from "react";

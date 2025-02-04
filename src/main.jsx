@@ -1,3 +1,4 @@
+// SRC/MAIN.JSX
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client'; // Importación necesaria para ReactDOM
 import './index.css';

@@ -1,4 +1,4 @@
-
+// SRC/PAGES/HOMEPAGE.JSX
 import "./HomePage.css";
 import logo from "../assets/logo1.png";
 import { Link } from "react-router-dom";
