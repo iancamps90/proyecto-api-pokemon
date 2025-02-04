@@ -1,36 +1,43 @@
 // SRC/APP.JSX
-import { lazy, Suspense, useState } from 'react'  // Importamos 'lazy' para cargar los componentes de forma perezosa y 'Suspense' para manejar el estado de carga
-import './App.css'
-import { Route, Routes } from 'react-router-dom'; // Importamos los componentes necesarios para manejar las rutas en React Router
-import HomePage from './pages/HomePage';
-//import PokemonsPage from './pages/PokemonsPage';
-//import PokemonPage from './pages/PokemonPage';
-//import ErrorPage from './pages/ErrorPage';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { lazy, Suspense, useState, useEffect } from "react";
+import "./App.css";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-// Importamos las páginas de forma perezosa (lazy loading)
-// Esto solo cargará las páginas cuando realmente se necesiten, optimizando el rendimiento
+// Lazy Loading para optimizar la carga
 const PokemonsPage = lazy(() => import("./pages/PokemonsPage"));
 const PokemonPage = lazy(() => import("./pages/PokemonPage"));
 const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 
-
-
 function App() {
-  return (
-    // Suspense permite mostrar un componente mientras esperamos que se cargue el componente perezoso (lazy-loaded)
-    <Suspense fallback= {<h1>Cargando...</h1>}> 
-      <Routes> {/* Rutas de la aplicación */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/pokemons" element={<PokemonsPage />} />
-        <Route path="/pokemons/:id" element={<PokemonPage />} />
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true"; // Recuperar modo oscuro
+  });
 
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </Suspense>
-    
+  useEffect(() => {
+    document.body.classList.toggle("dark-mode", darkMode);
+    localStorage.setItem("darkMode", darkMode); // Guardar preferencia
+  }, [darkMode]);
+
+  return (
+    <div className={darkMode ? "dark-mode" : "light-mode"}>
+      {/* Botón para cambiar el modo oscuro */}
+      <button onClick={() => setDarkMode(!darkMode)} className="dark-mode-btn">
+        {darkMode ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
+      </button>
+
+      <Suspense fallback={<h1>Cargando...</h1>}>
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path="/pokemons" element={<PokemonsPage />} />
+          <Route path="/pokemons/:id" element={<PokemonPage />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </Suspense>
+    </div>
   );
-  
 }
 
 export default App;
+

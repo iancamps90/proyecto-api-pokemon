@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html {
+    -webkit-text-size-adjust: 100%;
+    /* Asegura que no haya errores en navegadores */
+} 
+
 body {
     margin: 0;
     min-height: 100vh;

@@ -1,8 +1,10 @@
 // SRC/COMPONENTS/POKEMONDETAILS2.JSX
+import React from "react";
 import { useState } from "react";
 import "./PokemonDetails.css";
 import DetailsWrapper from "../hoc/DetailsWrapper";
 import { Link } from "react-router-dom";
+
 
 
 function PokemonDetails2(props) {

@@ -1,8 +1,10 @@
 // SRC/COMPONENTNS/POKEMONDETAILS.JSX
+import React from "react";
 import { useState } from "react";
 import "./PokemonDetails.css";
 import DetailsWrapper from "../hoc/DetailsWrapper";
 import { Link } from "react-router-dom";
+
 
 // Componente funcional de detalles del Pokémon
 function PokemonDetails(props) {

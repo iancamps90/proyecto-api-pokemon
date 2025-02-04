@@ -1,28 +1,23 @@
 // SRC/PAGES/POKEMONPAGE.JSX
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom"; // Importa useNavigate
-
 import "./PokemonPage.css"; // Estilos específicos del componente
 import { PokemonContext } from "../context/pokemon.context";
 
 function PokemonPage() {
-
-
     const { fetchPokemon } = useContext(PokemonContext);
-    
-
     const { id } = useParams(); // Extrae el id actual de la URL
     const navigate = useNavigate(); // Hook para cambiar de ruta
-    const [pokemon, setPokemon] = useState(); // Estado para almacenar la información del Pokémon.
-    const [error, setError] = useState(); // variable reactiva por si hay algun errro en el fecth
+    const [pokemon, setPokemon] = useState(null); // Estado para almacenar la información del Pokémon.
+    const [error, setError] = useState(null); // variable reactiva por si hay algun error en el fetch
 
     // useEffect se ejecuta cada vez que cambia el valor de 'id'
     useEffect(() => {
         getPokemon(id);
     }, [id]); // Se ejecuta cada vez que el id cambia
-    // Función para obtener los datos de un Pokémon desde la API de PokeAPI
 
-    const getPokemon = async (id) => { // Llama a la API para obtener los datos
+    // Función para obtener los datos de un Pokémon desde la API de PokeAPI
+    const getPokemon = async (id) => {
         try {
             const pokemon = await fetchPokemon(id);
             setPokemon(pokemon);
@@ -45,24 +40,27 @@ function PokemonPage() {
 
     return (
         <section id="pokemon-page">
-            {error ? ( // Si ocurre un error, mostramos el mensaje de error
+            {error ? (
+                // Si ocurre un error, mostramos el mensaje de error
                 <div>
-                    <h2>No se ha encontrado ningún pokemon</h2>
-                    <Link to= "/pokemons">Volver a la lista de pokemons</Link>
+                    <h2>No se ha encontrado ningún Pokémon</h2>
+                    <Link to="/pokemons">Volver a la lista de pokémons</Link>
                 </div>
-            ) : pokemon ? ( // Si hay datos del Pokémon, los mostramos
-                            <div>
-                                <h2>{pokemon.name.toUpperCase()}</h2>
-                                <img
-                                    src={pokemon.sprites.front_default}
-                                    alt="pokemon img"
-                                    className="pokemon-img"
-                                />
-                                <h3>Vida: {pokemon.stats[0].base_stat}</h3>
-                                <h3>Ataque: {pokemon.stats[1].base_stat}</h3>
-                                <h3>Defensa: {pokemon.stats[2].base_stat}</h3>
-                            </div>
-                ) : ( // Si no hay datos de Pokémon y no hay error, mostramos "Cargando..."
+            ) : pokemon ? (
+                // Si hay datos del Pokémon, los mostramos
+                <div>
+                    <h2>{pokemon.name.toUpperCase()}</h2>
+                    <img
+                        src={pokemon.sprites.front_default}
+                        alt="pokemon img"
+                        className="pokemon-img"
+                    />
+                    <h3>Vida: {pokemon.stats[0].base_stat}</h3>
+                    <h3>Ataque: {pokemon.stats[1].base_stat}</h3>
+                    <h3>Defensa: {pokemon.stats[2].base_stat}</h3>
+                </div>
+            ) : (
+                // Si no hay datos de Pokémon y no hay error, mostramos "Cargando..."
                 <div>
                     <h2>Cargando...</h2>
                 </div>
@@ -82,3 +80,4 @@ function PokemonPage() {
 }
 
 export default PokemonPage;
+

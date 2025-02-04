@@ -1,31 +1,27 @@
 /* App.css */
-
-/* Fondo y fuente general */
+/* 📌 GENERAL */
 body {
-    background-color: lightseagreen;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #f8f9fa;
 }
 
-/* Contenedor principal */
-.app-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    min-height: 100vh;
-    text-align: center;
-}
-
-/* Títulos principales */
 h2 {
-    color: #333;
-    font-size: 2rem;
+    text-align: center;
     margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* 📌 CONTENEDOR PRINCIPAL */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
 }
+
+
 
 /* Título de los pokemons seleccionados */
 h2.selected-pokemon {
@@ -34,5 +30,38 @@ h2.selected-pokemon {
     margin-bottom: 10px;
 }
 
+
+/* MODO OSCURO */
+/* Modo Claro (Por Defecto) */
+.light-mode {
+    background-color: white;
+    color: black;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Modo Oscuro */
+.dark-mode {
+    background-color: #121212;
+    color: white;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Botón para cambiar modo oscuro */
+.dark-mode-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.dark-mode-btn:hover {
+    background: #0056b3;
+}
 
 

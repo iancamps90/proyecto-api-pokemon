@@ -1,22 +1,17 @@
 // SRC/MAIN.JSX
-import { StrictMode } from 'react';
-import ReactDOM from 'react-dom/client'; // Importación necesaria para ReactDOM
-import './index.css';
-import App from './App.jsx';
-import { PokemonProviderWrapper } from './context/pokemon.context.jsx';
-import { BrowserRouter } from 'react-router-dom';
-import { UserProviderWrapper } from './context/user.context.jsx';
+import React, { StrictMode } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+import { PokemonProviderWrapper } from "./context/pokemon.context.jsx";
+import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
-    
     <BrowserRouter>
-      <UserProviderWrapper>
-        <PokemonProviderWrapper>
-          <App />
-        </PokemonProviderWrapper>
-      </UserProviderWrapper>
+      <PokemonProviderWrapper>
+        <App />
+      </PokemonProviderWrapper>
     </BrowserRouter>
-    
-  </StrictMode>,
+  </StrictMode>
 );
