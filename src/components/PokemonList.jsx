@@ -1,6 +1,10 @@
 // SRC/COMPONENTS/POKEMONLIST.JSX
 import { useContext, useEffect, useState, useMemo } from "react";
 import PokemonCard from "./PokemonCard";
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 import GetForm from "./GetForm";
 import { PokemonContext } from "../context/pokemon.context";
 import Modal from "react-modal";
