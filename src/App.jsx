@@ -1,14 +1,14 @@
 // SRC/APP.JSX
-import { lazy, Suspense, useState, useEffect } from "react";
+import {  Suspense, useState, useEffect } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// Lazy Loading para optimizar la carga
-const PokemonsPage = lazy(() => import("./pages/PokemonsPage"));
-const PokemonPage = lazy(() => import("./pages/PokemonPage"));
-const ErrorPage = lazy(() => import("./pages/ErrorPage"));
+import PokemonsPage from "./pages/PokemonsPage";
+import PokemonPage from "./pages/PokemonPage";
+import ErrorPage from "./pages/ErrorPage";
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(() => {
