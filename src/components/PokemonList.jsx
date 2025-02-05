@@ -24,16 +24,26 @@ function PokemonList() {
 
     const getPokemons = async (from, to) => {
         try {
-            const pkmArr = [];
             for (let i = from; i <= to; i++) {
-                const pokemon = await fetchPokemon(i);
-                pkmArr.push(pokemon);
+                await fetchPokemon(i);
             }
-            setPokemons(pkmArr);
         } catch (error) {
             console.error("Error fetching Pokémon:", error);
         }
     };
+
+
+    // 📌 Filtrar Pokémon según la búsqueda y el tipo
+    const filteredPokemons = useMemo(() => {
+        return pokemons
+            .filter((pokemon) =>
+                pokemon.name.toLowerCase().includes(search.toLowerCase()) &&
+                (selectedType === "Todos" ||
+                    (pokemon.types && pokemon.types.some(t => t.type.name === selectedType))) // 🟢 Verifica si `types` existe
+            )
+            .sort((a, b) => a.id - b.id); // 🔥 Asegura que estén ordenados
+    }, [pokemons, search, selectedType]);
+
 
     // Abre el modal con los detalles del Pokémon seleccionado
     const openModal = (pokemon) => {
@@ -46,14 +56,7 @@ function PokemonList() {
         setSelectedPokemon(null);
     };
 
-    // 🔍 Filtrar Pokémon según la búsqueda y el tipo
-    const filteredPokemons = useMemo(() => {
-        return pokemons.filter((pokemon) =>
-            pokemon.name.toLowerCase().includes(search.toLowerCase()) &&
-            (selectedType === "Todos" ||
-                (pokemon.types && pokemon.types.some(t => t.type.name === selectedType))) // ← Asegura que la propiedad existe
-        );
-    }, [pokemons, search, selectedType]);
+
 
 
     return (

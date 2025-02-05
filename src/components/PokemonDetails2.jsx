@@ -1,8 +1,6 @@
 // SRC/COMPONENTS/POKEMONDETAILS2.JSX
 import React from "react";
-import { useState } from "react";
 import "./PokemonDetails.css";
-import DetailsWrapper from "../hoc/DetailsWrapper";
 import { Link } from "react-router-dom";
 
 
@@ -12,7 +10,7 @@ function PokemonDetails2(props) {
     const { pokemon, likes, increaseLikes } = props;
 
     if (!pokemon || !pokemon.sprites) {
-        return <p>Loading...</p>;
+        return <p>Cargando...</p>;
     }
 
     return (
@@ -20,10 +18,12 @@ function PokemonDetails2(props) {
             <div>
                 <h3>Pokemon 2</h3>
                 <h3>
-                    Likes {likes}
-                    <button onClick={increaseLikes}>+</button>
+                    Likes: {likes}{" "}
+                    <button onClick={increaseLikes} className="like-btn">❤️</button>
                 </h3>
-                <Link to={`/pokemons/${pokemon.id}`} >Ver Detalles</Link>
+                <Link to={`/pokemons/${pokemon.id}`} className="details-btn">
+                    🔍 Ver Detalles
+                </Link>
             </div>
 
             <div className="pokemon-container">

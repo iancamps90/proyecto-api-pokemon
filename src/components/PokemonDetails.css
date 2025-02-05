@@ -1,7 +1,7 @@
 /* SRC/COMPONENTS/POKEMONDETAILS.CSS */
 /* 🌟 Modal Overlay */
 .modal-overlay {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     position: fixed;
     top: 0;
     left: 0;
@@ -21,6 +21,13 @@
     max-width: 500px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease-in-out;
+}
+
+/* 🌙 Modo Oscuro para el Modal */
+.dark-mode .modal-content {
+    background: #333;
+    color: white;
+    border: 3px solid #ffcc00;
 }
 
 /* Botón para cerrar el modal */
@@ -119,6 +126,25 @@
     background: linear-gradient(to right, #ffaa00, #ff5500);
     transform: scale(1.05);
 }
+
+/* boton ver detalles  */
+.details-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.details-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+
 
 /* 📌 Responsive para móvil */
 @media (max-width: 768px) {

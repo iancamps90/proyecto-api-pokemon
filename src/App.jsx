@@ -20,16 +20,16 @@ function App() {
     localStorage.setItem("darkMode", darkMode); // Guardar preferencia
   }, [darkMode]);
 
+
   return (
-    <div className={darkMode ? "dark-mode" : "light-mode"}>
-      {/* Botón para cambiar el modo oscuro */}
+    <div>
       <button onClick={() => setDarkMode(!darkMode)} className="dark-mode-btn">
         {darkMode ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
       </button>
 
       <Suspense fallback={<h1>Cargando...</h1>}>
         <Routes>
-          <Route index element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/pokemons" element={<PokemonsPage />} />
           <Route path="/pokemons/:id" element={<PokemonPage />} />
           <Route path="*" element={<ErrorPage />} />

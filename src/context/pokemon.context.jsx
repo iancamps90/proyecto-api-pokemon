@@ -10,7 +10,16 @@ function PokemonProviderWrapper(props) {
         try {
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${index}`);
             const data = await response.json();
-            setPokemons((prev) => [...prev, data]); // 👈 Ahora sí almacena los pokemons
+
+            // ⏳ Evitar Pokémon duplicados en la lista
+            setPokemons((prev) => {
+                const existingIds = prev.map(p => p.id);
+                if (!existingIds.includes(data.id)) {
+                    return [...prev, data].sort((a, b) => a.id - b.id); // Ordena por ID
+                }
+                return prev;
+            });
+
             return data;
         } catch (error) {
             console.error("Error fetching Pokémon:", error);
@@ -24,5 +33,5 @@ function PokemonProviderWrapper(props) {
     );
 }
 
-export { PokemonContext, PokemonProviderWrapper, useContext };
+export { PokemonContext, PokemonProviderWrapper };
 

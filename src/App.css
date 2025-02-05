@@ -50,18 +50,29 @@ h2.selected-pokemon {
 .dark-mode-btn {
     position: fixed;
     top: 10px;
-    right: 10px;
-    background: #007bff;
-    color: white;
-    padding: 10px 15px;
+    right: 20px;
+    background: linear-gradient(135deg, #ffcc00, #ff8800);
     border: none;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+    z-index: 1000;
 }
 
 .dark-mode-btn:hover {
-    background: #0056b3;
+    background: linear-gradient(135deg, #ffaa00, #ff5500);
+    transform: scale(1.1);
 }
 
+/* 🌙 Estilos adicionales para modo oscuro */
+.dark-mode .modal-content {
+    background: #333;
+    color: white;
+    border: 3px solid #ffcc00;
+}
 
+.dark-mode .pokemon-container {
+    background: linear-gradient(135deg, #444, #222);
+}
