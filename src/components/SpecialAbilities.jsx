@@ -166,8 +166,16 @@ const SpecialAbilities = ({ pokemon }) => {
                         <motion.div
                             key={index}
                             className="ability-card"
-                            whileHover={{ scale: 1.05, y: -5 }}
+                            whileHover={{ 
+                                scale: 1.05, 
+                                y: -10,
+                                rotateY: 5,
+                                transition: { duration: 0.3 }
+                            }}
                             whileTap={{ scale: 0.95 }}
+                            initial={{ opacity: 0, y: 20, rotateX: -15 }}
+                            animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                            transition={{ delay: index * 0.1, duration: 0.5 }}
                             onClick={() => {
                                 setSelectedAbility(ability);
                                 setShowAbilityDetails(true);

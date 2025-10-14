@@ -116,9 +116,9 @@ const BattleSimulator = ({ pokemon1, pokemon2, onBattleEnd }) => {
         // Factor STAB (Same Type Attack Bonus)
         const stab = attacker.types.some(t => t.type.name === move.type) ? 1.5 : 1;
         
-        // Fórmula de daño más balanceada (daño más bajo)
+        // Fórmula de daño balanceada y realista
         const baseDamage = Math.floor(((2 * level + 10) / 250) * (effectiveAttack / effectiveDefense) * basePower + 2);
-        const finalDamage = Math.floor(baseDamage * effectiveness * stab * 0.3); // Reducir daño general
+        const finalDamage = Math.floor(baseDamage * effectiveness * stab * 0.8); // Aumentar daño general
         
         // Variación de daño (85%-115%)
         const variation = Math.random() * 0.3 + 0.85;
@@ -206,6 +206,23 @@ const BattleSimulator = ({ pokemon1, pokemon2, onBattleEnd }) => {
         if (!pokemon || !pokemon.types) return [];
         return pokemon.types.map(type => basicMoves[type.type.name]).filter(Boolean);
     };
+
+    // IA para el jugador 2 - selecciona movimiento automáticamente
+    useEffect(() => {
+        if (battleState.isBattleActive && battleState.turn === 2 && !isAnimating) {
+            const moves = getAvailableMoves(battleState.pokemon2);
+            if (moves.length > 0) {
+                // Seleccionar movimiento aleatorio
+                const randomMove = moves[Math.floor(Math.random() * moves.length)];
+                setSelectedMove2(randomMove);
+                
+                // Ejecutar movimiento después de un breve delay
+                setTimeout(() => {
+                    handleMove(randomMove);
+                }, 1000);
+            }
+        }
+    }, [battleState.turn, battleState.isBattleActive, isAnimating]);
 
     // Renderizar barra de HP
     const renderHpBar = (pokemon, isPokemon1) => {

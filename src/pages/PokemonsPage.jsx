@@ -5,7 +5,7 @@ import PokemonDetails from "../components/PokemonDetails";
 import PokemonDetails2 from "../components/PokemonDetails2";
 import DetailsWrapper from "../hoc/DetailsWrapper";
 import CompactFilters from "../components/CompactFilters";
-import TeamGenerator from "../components/TeamGenerator";
+import TeamGeneratorOptimized from "../components/TeamGeneratorOptimized";
 import ShinyDetector from "../components/ShinyDetector";
 import BattleSimulator from "../components/BattleSimulator";
 import SpecialAbilities from "../components/SpecialAbilities";
@@ -153,7 +153,7 @@ function PokemonsPage() {
             )}
 
             {activeTab === 'team' && (
-                <TeamGenerator pokemons={pokemons} />
+                <TeamGeneratorOptimized pokemons={pokemons} />
             )}
 
             {activeTab === 'shiny' && (

@@ -139,10 +139,16 @@ const EvolutionChain = ({ pokemon }) => {
                         <motion.div
                             key={stage.id}
                             className={`evolution-stage ${isCurrentPokemon ? 'current' : ''} ${isSelected ? 'selected' : ''}`}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ scale: 1.05 }}
+                            initial={{ opacity: 0, x: -20, rotateY: -20 }}
+                            animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                            transition={{ delay: index * 0.1, duration: 0.6 }}
+                            whileHover={{ 
+                                scale: 1.05, 
+                                rotateY: 5,
+                                y: -5,
+                                transition: { duration: 0.3 }
+                            }}
+                            whileTap={{ scale: 0.95 }}
                             onClick={() => setSelectedStage(isSelected ? null : stage)}
                         >
                             <div className="stage-pokemon">
