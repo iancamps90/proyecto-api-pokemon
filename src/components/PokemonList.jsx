@@ -11,15 +11,22 @@ import "./PokemonList.css";
 // Configuración para react-modal
 Modal.setAppElement("#root");
 
-function PokemonList() {
-    const { pokemons, setPokemons, fetchPokemon } = useContext(PokemonContext);
-    const [search, setSearch] = useState("");
-    const [selectedType, setSelectedType] = useState("Todos");
+function PokemonList({ 
+    pokemons = [], 
+    selectPokemon, 
+    selectPokemon2, 
+    onToggleFavorite, 
+    isFavorite 
+}) {
+    const { fetchPokemon } = useContext(PokemonContext);
     const [selectedPokemon, setSelectedPokemon] = useState(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     useEffect(() => {
-        getPokemons(1, 9);
+        // Cargar algunos Pokémon iniciales si no hay ninguno
+        if (pokemons.length === 0) {
+            getPokemons(1, 20);
+        }
     }, []);
 
     const getPokemons = async (from, to) => {
@@ -31,18 +38,6 @@ function PokemonList() {
             console.error("Error fetching Pokémon:", error);
         }
     };
-
-
-    // 📌 Filtrar Pokémon según la búsqueda y el tipo
-    const filteredPokemons = useMemo(() => {
-        return pokemons
-            .filter((pokemon) =>
-                pokemon.name.toLowerCase().includes(search.toLowerCase()) &&
-                (selectedType === "Todos" ||
-                    (pokemon.types && pokemon.types.some(t => t.type.name === selectedType))) // 🟢 Verifica si `types` existe
-            )
-            .sort((a, b) => a.id - b.id); // 🔥 Asegura que estén ordenados
-    }, [pokemons, search, selectedType]);
 
 
     // Abre el modal con los detalles del Pokémon seleccionado
@@ -60,44 +55,51 @@ function PokemonList() {
 
 
     return (
-        <div className="container mt-4">
-            {/* 🔍 Barra de Búsqueda */}
-            <input
-                type="text"
-                className="form-control mb-3"
-                placeholder="🔍 Buscar Pokémon..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
-
-            {/* 🎯 Filtro por Tipo */}
-            <select
-                className="form-select mb-3"
-                value={selectedType}
-                onChange={(e) => setSelectedType(e.target.value)}
-            >
-                <option value="Todos">Todos</option>
-                <option value="fire">🔥 Fuego</option>
-                <option value="water">💧 Agua</option>
-                <option value="grass">🌿 Planta</option>
-                <option value="electric">⚡ Eléctrico</option>
-                <option value="psychic">🔮 Psíquico</option>
-            </select>
-
-            {/* 📌 Formulario para elegir Pokémon */}
+        <div className="pokemon-list-container">
+            {/* 📌 Formulario para cargar más Pokémon */}
             <GetForm getPokemons={getPokemons} />
 
             {/* 🎨 Grid de Pokémon */}
-            <div className="row">
-                {filteredPokemons.map((pokemon) => (
-                    <div key={pokemon.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div className="pokemon-grid">
+                {pokemons.map((pokemon) => (
+                    <div key={pokemon.id} className="pokemon-item">
                         <PokemonCard
                             pokemon={pokemon}
-                            onClick={() => openModal(pokemon)}  // ← Ahora sí funciona
+                            onClick={() => {
+                                // Seleccionar para slot 1 si no hay ninguno, sino para slot 2
+                                if (selectPokemon) {
+                                    selectPokemon(pokemon);
+                                }
+                                openModal(pokemon);
+                            }}
                         />
+                        <div className="pokemon-actions">
+                            <button 
+                                onClick={() => selectPokemon2 && selectPokemon2(pokemon)}
+                                className="action-btn slot2-btn"
+                                title="Seleccionar para slot 2"
+                            >
+                                🎯 Slot 2
+                            </button>
+                            {onToggleFavorite && (
+                                <button 
+                                    onClick={() => onToggleFavorite(pokemon)}
+                                    className={`action-btn favorite-btn ${isFavorite && isFavorite(pokemon.id) ? 'active' : ''}`}
+                                    title="Añadir a favoritos"
+                                >
+                                    {isFavorite && isFavorite(pokemon.id) ? '❤️' : '🤍'}
+                                </button>
+                            )}
+                        </div>
                     </div>
                 ))}
             </div>
+
+            {pokemons.length === 0 && (
+                <div className="no-pokemon">
+                    <p>No hay Pokémon cargados. Usa el formulario para cargar algunos.</p>
+                </div>
+            )}
 
             {/* 📌 Modal de Detalles */}
             <Modal

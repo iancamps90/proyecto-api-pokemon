@@ -8,13 +8,30 @@ function PokemonCard({ pokemon, onClick }) {
         return <p className="loading">Cargando...</p>;
     }
 
+    // Obtener el tipo principal para el color dinámico
+    const primaryType = pokemon.types[0]?.type.name || 'normal';
+    const typeString = pokemon.types.map(t => t.type.name).join(' ');
+
     return (
         <motion.li
             className="pokemon-card"
-            onClick={onClick}  // ← Asegurando que el click se pase correctamente
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            data-type={typeString}
+            onClick={onClick}
+            initial={{ opacity: 0, y: 50, rotateY: -15 }}
+            animate={{ opacity: 1, y: 0, rotateY: 0 }}
+            transition={{ 
+                duration: 0.6,
+                type: "spring",
+                stiffness: 100,
+                damping: 15
+            }}
+            whileHover={{ 
+                y: -10,
+                rotateX: 5,
+                rotateY: 5,
+                scale: 1.05,
+                transition: { duration: 0.3 }
+            }}
         >
             <div className="pokemon-header">
                 <h2 className="pokemon-name">{pokemon.name.toUpperCase()}</h2>

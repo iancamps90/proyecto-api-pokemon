@@ -1,0 +1,476 @@
+/* EVOLUTION TREE STYLES */
+.evolution-tree {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.evolution-placeholder {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.evolution-placeholder h3 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #FFD700;
+}
+
+.evolution-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.evolution-header h3 {
+    font-size: 1.8rem;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.evolution-controls {
+    display: flex;
+    gap: 15px;
+}
+
+.evolve-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.evolve-btn:hover:not(:disabled) {
+    background: linear-gradient(45deg, #FF8E53, #FF6B6B);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+}
+
+.evolve-btn:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+}
+
+/* LOADING */
+.evolution-loading {
+    text-align: center;
+    padding: 40px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.loading-pokeball {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+}
+
+/* CONTAINER PRINCIPAL */
+.evolution-container {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.evolution-tree-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* NODOS DE EVOLUCIÓN */
+.evolution-node {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.evolution-node.level-0 {
+    transform-origin: center;
+}
+
+.evolution-node.level-1 {
+    transform-origin: center;
+}
+
+.evolution-node.level-2 {
+    transform-origin: center;
+}
+
+.evolution-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+    text-align: center;
+}
+
+.evolution-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.evolution-card:hover::before {
+    left: 100%;
+}
+
+.evolution-card:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.evolution-node.active .evolution-card {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #FFD700;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+}
+
+.evolution-sprite {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3));
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.evolution-node.active .evolution-sprite {
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.3)) drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+}
+
+.evolution-info {
+    color: white;
+}
+
+.evolution-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.evolution-types {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.type-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.type-fire { background: linear-gradient(45deg, #FF6B6B, #FF8E53); }
+.type-water { background: linear-gradient(45deg, #4ECDC4, #44A08D); }
+.type-grass { background: linear-gradient(45deg, #45B7D1, #96C93D); }
+.type-electric { background: linear-gradient(45deg, #FFE66D, #FF9A56); }
+.type-psychic { background: linear-gradient(45deg, #A8E6CF, #88D8A3); }
+.type-ice { background: linear-gradient(45deg, #B4E7CE, #74B9FF); }
+.type-dragon { background: linear-gradient(45deg, #96CEB4, #FFEAA7); }
+.type-dark { background: linear-gradient(45deg, #FFEAA7, #DDA0DD); }
+.type-fairy { background: linear-gradient(45deg, #DDA0DD, #FFB6C1); }
+.type-normal { background: linear-gradient(45deg, #D3D3D3, #A9A9A9); }
+.type-fighting { background: linear-gradient(45deg, #CD5C5C, #FF6B6B); }
+.type-flying { background: linear-gradient(45deg, #87CEEB, #98D8C8); }
+.type-poison { background: linear-gradient(45deg, #98D8C8, #DDA0DD); }
+.type-ground { background: linear-gradient(45deg, #F4A460, #DEB887); }
+.type-rock { background: linear-gradient(45deg, #BC8F8F, #CD853F); }
+.type-bug { background: linear-gradient(45deg, #9ACD32, #32CD32); }
+.type-ghost { background: linear-gradient(45deg, #DDA0DD, #9370DB); }
+.type-steel { background: linear-gradient(45deg, #C0C0C0, #708090); }
+
+/* EFECTOS ESPECIALES */
+.active-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.glow-ring {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 3px solid #FFD700;
+    border-radius: 25px;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        opacity: 1;
+    }
+    50% { 
+        box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+        opacity: 0.8;
+    }
+}
+
+.sparkles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 1.5rem;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+.sparkle:nth-child(1) { top: 10%; left: 10%; }
+.sparkle:nth-child(2) { top: 20%; right: 15%; }
+.sparkle:nth-child(3) { bottom: 30%; left: 20%; }
+.sparkle:nth-child(4) { bottom: 15%; right: 10%; }
+.sparkle:nth-child(5) { top: 50%; left: 5%; }
+.sparkle:nth-child(6) { top: 60%; right: 5%; }
+.sparkle:nth-child(7) { top: 80%; left: 50%; }
+.sparkle:nth-child(8) { top: 10%; left: 50%; }
+
+/* RAMAS DE EVOLUCIÓN */
+.evolution-children {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+.evolution-branch {
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to bottom, #FFD700, transparent);
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* DETALLES DEL POKÉMON */
+.evolution-details {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.evolution-details h4 {
+    color: #FFD700;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.pokemon-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.detail-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+}
+
+.detail-value {
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.stats-mini {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.stats-mini span {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+}
+
+/* OVERLAY DE EVOLUCIÓN */
+.evolution-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    border-radius: 20px;
+}
+
+.evolution-lights {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.light-beam {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #FFD700;
+}
+
+.light-beam:nth-child(1) { top: 10%; left: 10%; }
+.light-beam:nth-child(2) { top: 20%; left: 20%; }
+.light-beam:nth-child(3) { top: 30%; left: 30%; }
+.light-beam:nth-child(4) { top: 40%; left: 40%; }
+.light-beam:nth-child(5) { top: 50%; left: 50%; }
+.light-beam:nth-child(6) { top: 60%; left: 60%; }
+.light-beam:nth-child(7) { top: 70%; left: 70%; }
+.light-beam:nth-child(8) { top: 80%; left: 80%; }
+.light-beam:nth-child(9) { top: 90%; left: 90%; }
+.light-beam:nth-child(10) { top: 15%; right: 15%; }
+.light-beam:nth-child(11) { top: 25%; right: 25%; }
+.light-beam:nth-child(12) { top: 35%; right: 35%; }
+.light-beam:nth-child(13) { top: 45%; right: 45%; }
+.light-beam:nth-child(14) { top: 55%; right: 55%; }
+.light-beam:nth-child(15) { top: 65%; right: 65%; }
+.light-beam:nth-child(16) { top: 75%; right: 75%; }
+.light-beam:nth-child(17) { top: 85%; right: 85%; }
+.light-beam:nth-child(18) { top: 95%; right: 95%; }
+.light-beam:nth-child(19) { top: 50%; left: 10%; }
+.light-beam:nth-child(20) { top: 50%; right: 10%; }
+
+.evolution-text {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: textGlow 1s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(255, 215, 0, 0.5); }
+    100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 40px rgba(255, 215, 0, 0.8); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .evolution-tree {
+        padding: 20px;
+        margin: 15px 0;
+    }
+    
+    .evolution-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .evolution-container {
+        padding: 10px;
+    }
+    
+    .evolution-card {
+        min-width: 150px;
+        padding: 15px;
+    }
+    
+    .evolution-sprite {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .pokemon-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .evolution-text {
+        font-size: 2rem;
+    }
+}
+
+/* MODO OSCURO */
+.dark-mode .evolution-tree {
+    background: linear-gradient(135deg, #0f1419, #1a1f2e);
+    border-color: rgba(255, 215, 0, 0.2);
+}
+
+.dark-mode .evolution-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .evolution-node.active .evolution-card {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: #FFD700;
+}
+
+.dark-mode .evolution-details {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}

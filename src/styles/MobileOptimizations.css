@@ -1,0 +1,156 @@
+/* MOBILE OPTIMIZATIONS */
+/* Mejoras específicas para móvil */
+
+/* SCROLL SUAVE */
+html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* PREVENIR ZOOM EN INPUTS */
+input[type="text"],
+input[type="search"],
+select,
+textarea {
+    font-size: 16px;
+    transform: translateZ(0);
+}
+
+/* MEJORAR TAP TARGETS */
+button,
+.pokemon-card,
+.tab-btn,
+.action-btn {
+    min-height: 44px;
+    min-width: 44px;
+    touch-action: manipulation;
+}
+
+/* OPTIMIZAR ANIMACIONES EN MÓVIL */
+@media (max-width: 768px) {
+    * {
+        animation-duration: 0.3s !important;
+        transition-duration: 0.3s !important;
+    }
+    
+    /* Reducir efectos complejos en móvil */
+    .pokemon-card::before {
+        display: none;
+    }
+    
+    /* Simplificar hover effects */
+    .pokemon-card:hover {
+        transform: scale(1.02);
+    }
+    
+    /* Mejorar legibilidad */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* GESTOS TÁCTILES MEJORADOS */
+.touch-action {
+    touch-action: manipulation;
+}
+
+/* PREVENIR SELECCIÓN ACCIDENTAL */
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* MEJORAR RENDIMIENTO EN MÓVIL */
+@media (max-width: 768px) {
+    .pokemon-grid {
+        contain: layout style paint;
+    }
+    
+    .pokemon-card {
+        will-change: transform;
+    }
+}
+
+/* SAFE AREAS PARA IPHONE X+ */
+@supports (padding: max(0px)) {
+    .safe-area-top {
+        padding-top: max(20px, env(safe-area-inset-top));
+    }
+    
+    .safe-area-bottom {
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}
+
+/* OPTIMIZAR PARA PANTALLAS PEQUEÑAS */
+@media (max-width: 480px) {
+    /* Reducir espaciado */
+    .container,
+    .pokemon-list-container,
+    .compact-filters {
+        padding: 10px;
+    }
+    
+    /* Mejorar botones pequeños */
+    .action-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        border-radius: 12px;
+    }
+    
+    /* Optimizar textos */
+    h1, h2, h3 {
+        line-height: 1.2;
+    }
+    
+    /* Mejorar inputs */
+    input, select {
+        padding: 12px;
+        border-radius: 8px;
+    }
+}
+
+/* DARK MODE MÓVIL */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+    .dark-mode-btn {
+        background: linear-gradient(135deg, #ffaa00, #ff5500);
+    }
+}
+
+/* ORIENTACIÓN LANDSCAPE */
+@media (max-width: 768px) and (orientation: landscape) {
+    .tabs-navigation {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+        flex: 1;
+        min-width: 120px;
+    }
+}
+
+/* HIGH DPI DISPLAYS */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .pokemon-img-list,
+    .battle-sprite,
+    .evolution-sprite {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* REDUCIR MOTION PARA USUARIOS SENSIBLES */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
