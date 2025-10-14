@@ -87,23 +87,17 @@ const TeamGenerator = ({ pokemons }) => {
             return shuffled;
         };
 
-        // Estrategias MEJORADAS con mucha más variedad
+        // Estrategias OPTIMIZADAS para mejor rendimiento
         const strategies = {
             balanced: () => {
-                // Estrategia balanceada con variedad de tipos
-                const typeGroups = {
-                    offensive: ['fire', 'fighting', 'dragon', 'electric'],
-                    defensive: ['steel', 'rock', 'ground', 'water'],
-                    special: ['psychic', 'ghost', 'fairy', 'dark'],
-                    utility: ['normal', 'flying', 'bug', 'poison']
-                };
-
-                // Seleccionar 1-2 de cada grupo
-                Object.values(typeGroups).forEach(types => {
-                    const count = Math.floor(Math.random() * 2) + 1; // 1 o 2
-                    for (let i = 0; i < count && selectedTeam.length < 6; i++) {
+                // Estrategia balanceada simplificada
+                const types = ['fire', 'water', 'grass', 'electric', 'psychic', 'fighting'];
+                
+                // Seleccionar 1 de cada tipo
+                types.forEach(type => {
+                    if (selectedTeam.length < 6) {
                         const pokemon = getRandomPokemon(p => 
-                            p.types.some(t => types.includes(t.type.name))
+                            p.types.some(t => t.type.name === type)
                         );
                         if (pokemon) selectedTeam.push(pokemon);
                     }

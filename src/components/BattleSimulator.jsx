@@ -211,7 +211,24 @@ const BattleSimulator = ({ pokemon1, pokemon2, onBattleEnd }) => {
             <div className="battle-simulator">
                 <div className="battle-placeholder">
                     <h3>⚔️ Battle Simulator</h3>
-                    <p>Selecciona dos Pokémon para comenzar una batalla</p>
+                    <div className="selection-status">
+                        <div className={`pokemon-status ${pokemon1 ? 'selected' : 'not-selected'}`}>
+                            <span>Pokémon 1:</span>
+                            <span>{pokemon1 ? `✅ ${pokemon1.name}` : '❌ No seleccionado'}</span>
+                        </div>
+                        <div className={`pokemon-status ${pokemon2 ? 'selected' : 'not-selected'}`}>
+                            <span>Pokémon 2:</span>
+                            <span>{pokemon2 ? `✅ ${pokemon2.name}` : '❌ No seleccionado'}</span>
+                        </div>
+                    </div>
+                    <div className="battle-instructions">
+                        <h4>📋 Instrucciones:</h4>
+                        <ol>
+                            <li>Selecciona un Pokémon de la lista (se asignará automáticamente al Slot 1)</li>
+                            <li>Selecciona otro Pokémon diferente (se asignará al Slot 2)</li>
+                            <li>¡La batalla comenzará automáticamente!</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         );

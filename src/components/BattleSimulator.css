@@ -496,6 +496,59 @@
     border-color: #FFD700;
 }
 
+/* ESTILOS PARA BATTLE SIMULATOR MEJORADO */
+.selection-status {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.pokemon-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+    min-width: 250px;
+    font-weight: 600;
+}
+
+.pokemon-status.selected {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+}
+
+.pokemon-status.not-selected {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+}
+
+.battle-instructions {
+    margin-top: 30px;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.battle-instructions h4 {
+    color: #ffcc00;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.battle-instructions ol {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.battle-instructions li {
+    margin-bottom: 8px;
+}
+
 .dark-mode .move-btn {
     background: rgba(0, 0, 0, 0.3);
     border-color: rgba(255, 255, 255, 0.1);

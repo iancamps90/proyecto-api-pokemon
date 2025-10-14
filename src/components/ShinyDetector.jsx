@@ -5,7 +5,7 @@ import './ShinyDetector.css';
 
 const ShinyDetector = ({ pokemon, onShinyFound }) => {
     const [isShiny, setIsShiny] = useState(false);
-    const [shinyChance, setShinyChance] = useState(0.000244); // 1/4096 chance
+    const [shinyChance, setShinyChance] = useState(0.01); // 1/100 chance para testing (era 0.000244 = 1/4096)
     const [detectionAttempts, setDetectionAttempts] = useState(0);
     const [showShinyAnimation, setShowShinyAnimation] = useState(false);
     const [shinyStreak, setShinyStreak] = useState(0);
@@ -52,6 +52,11 @@ const ShinyDetector = ({ pokemon, onShinyFound }) => {
             setTimeout(() => {
                 setShowShinyAnimation(false);
             }, 3000);
+        } else {
+            // Mostrar mensaje de que no es Shiny
+            setTimeout(() => {
+                console.log(`❌ ${pokemon.name} no es Shiny. Sigue intentando!`);
+            }, 500);
         }
         
         return isShinyDetected;

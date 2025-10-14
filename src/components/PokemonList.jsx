@@ -23,9 +23,9 @@ function PokemonList({
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     useEffect(() => {
-        // Cargar algunos Pokémon iniciales si no hay ninguno
+        // Cargar solo algunos Pokémon iniciales para mejor rendimiento
         if (pokemons.length === 0) {
-            getPokemons(1, 20);
+            getPokemons(1, 12); // Reducir de 20 a 12
         }
     }, []);
 

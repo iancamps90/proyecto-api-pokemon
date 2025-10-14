@@ -97,8 +97,10 @@ h2.selected-pokemon {
         top: 5px;
         right: 10px;
         padding: 8px 12px;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         border-radius: 6px;
+        z-index: 1001;
+        position: fixed;
     }
 }
 
@@ -106,9 +108,11 @@ h2.selected-pokemon {
     .dark-mode-btn {
         top: 5px;
         right: 5px;
-        padding: 6px 10px;
-        font-size: 0.8rem;
+        padding: 6px 8px;
+        font-size: 0.7rem;
         border-radius: 4px;
+        z-index: 1001;
+        position: fixed;
     }
 }
 
