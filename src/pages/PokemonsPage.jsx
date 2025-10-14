@@ -10,6 +10,7 @@ import ShinyDetector from "../components/ShinyDetector";
 import BattleSimulator from "../components/BattleSimulator";
 import SpecialAbilities from "../components/SpecialAbilities";
 import EvolutionChain from "../components/EvolutionChain";
+import AdvancedStats from "../components/AdvancedStats";
 import { useFavorites } from "../context/FavoritesContext";
 import { PokemonContext } from "../context/pokemon.context";
 import { useContext } from "react";
@@ -20,7 +21,7 @@ function PokemonsPage() {
     const [selectedPokemon, setSelectedPokemon] = useState(null);
     const [selectedPokemon2, setSelectedPokemon2] = useState(null);
     const [filteredPokemons, setFilteredPokemons] = useState([]);
-    const [activeTab, setActiveTab] = useState('list'); // 'list', 'team', 'shiny', 'battle', 'abilities', 'evolution'
+    const [activeTab, setActiveTab] = useState('list'); // 'list', 'team', 'shiny', 'battle', 'abilities', 'evolution', 'stats'
     const [searchTerm, setSearchTerm] = useState('');
 
     // Contextos
@@ -120,6 +121,12 @@ function PokemonsPage() {
                 >
                     🔄 Evolución
                 </button>
+                <button 
+                    className={`tab-btn ${activeTab === 'stats' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('stats')}
+                >
+                    📊 Estadísticas
+                </button>
             </div>
 
             {/* Contenido según pestaña activa */}
@@ -187,6 +194,10 @@ function PokemonsPage() {
 
             {activeTab === 'evolution' && (
                 <EvolutionChain pokemon={selectedPokemon} />
+            )}
+
+            {activeTab === 'stats' && (
+                <AdvancedStats pokemon={selectedPokemon} pokemons={pokemons} />
             )}
         </main>
     );

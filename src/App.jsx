@@ -30,6 +30,21 @@ function App() {
     localStorage.setItem("darkMode", darkMode); // Guardar preferencia
   }, [darkMode]);
 
+  // Registrar Service Worker para PWA
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then((registration) => {
+            console.log('SW registrado: ', registration);
+          })
+          .catch((registrationError) => {
+            console.log('Error al registrar SW: ', registrationError);
+          });
+      });
+    }
+  }, []);
+
 
   return (
     <FavoritesProvider>
