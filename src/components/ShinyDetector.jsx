@@ -1,9 +1,12 @@
 // SRC/COMPONENTS/SHINYDETECTOR.JSX
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSound } from '../hooks/useSound';
 import './ShinyDetector.css';
 
 const ShinyDetector = ({ pokemon, onShinyFound }) => {
+    const { playSound } = useSound();
+    
     const [isShiny, setIsShiny] = useState(false);
     const [shinyChance, setShinyChance] = useState(0.01); // 1/100 chance para testing (era 0.000244 = 1/4096)
     const [detectionAttempts, setDetectionAttempts] = useState(0);
@@ -24,6 +27,9 @@ const ShinyDetector = ({ pokemon, onShinyFound }) => {
         
         setDetectionAttempts(prev => prev + 1);
         
+        // Sonido de detección
+        playSound('shinyDetection');
+        
         // Algoritmo mejorado de detección de Shiny
         // Usar el ID del Pokémon como semilla para consistencia
         const seed = pokemon.id + detectionAttempts + Date.now();
@@ -42,6 +48,9 @@ const ShinyDetector = ({ pokemon, onShinyFound }) => {
             setIsShiny(true);
             setShinyStreak(prev => prev + 1);
             setShowShinyAnimation(true);
+            
+            // Sonido especial de Shiny encontrado
+            playSound('shinyFound');
             
             // Llamar callback si existe
             if (onShinyFound) {

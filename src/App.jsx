@@ -12,9 +12,15 @@ import PokemonPage from "./pages/PokemonPage";
 import ErrorPage from "./pages/ErrorPage";
 import { PokemonProviderWrapper } from "./context/pokemon.context";
 import { FavoritesProvider } from "./context/FavoritesContext";
+import ThemeSelector from "./components/ThemeSelector";
+import { useTheme } from "./hooks/useTheme";
+import { useSound } from "./hooks/useSound";
 
 
 function App() {
+  const { currentTheme } = useTheme();
+  const { isEnabled: soundEnabled, toggleSound } = useSound();
+  
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true"; // Recuperar modo oscuro
   });
@@ -28,10 +34,18 @@ function App() {
   return (
     <FavoritesProvider>
       <PokemonProviderWrapper>
-        <div className="app-container">
-          <button onClick={() => setDarkMode(!darkMode)} className="dark-mode-btn">
-            {darkMode ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
-          </button>
+                <div className="app-container">
+                  <div className="app-controls">
+                    <button onClick={() => setDarkMode(!darkMode)} className="dark-mode-btn">
+                      {darkMode ? "☀️ Modo Claro" : "🌙 Modo Oscuro"}
+                    </button>
+                    
+                    <ThemeSelector />
+                    
+                    <button onClick={toggleSound} className="sound-btn">
+                      {soundEnabled ? "🔊" : "🔇"}
+                    </button>
+                  </div>
 
           <Suspense fallback={
             <div className="loading-container">

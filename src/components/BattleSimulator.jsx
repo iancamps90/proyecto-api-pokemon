@@ -1,9 +1,12 @@
 // SRC/COMPONENTS/BATTLESIMULATOR.JSX
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSound } from '../hooks/useSound';
 import './BattleSimulator.css';
 
 const BattleSimulator = ({ pokemon1, pokemon2, onBattleEnd }) => {
+    const { playSound } = useSound();
+    
     const [battleState, setBattleState] = useState({
         pokemon1: { ...pokemon1, currentHp: 0, maxHp: 0 },
         pokemon2: { ...pokemon2, currentHp: 0, maxHp: 0 },
@@ -53,8 +56,11 @@ const BattleSimulator = ({ pokemon1, pokemon2, onBattleEnd }) => {
                 isBattleActive: true,
                 winner: null
             });
+            
+            // Sonido de inicio de batalla
+            playSound('battleStart');
         }
-    }, [pokemon1, pokemon2]);
+    }, [pokemon1, pokemon2, playSound]);
 
     // Calcular efectividad de tipos
     const calculateTypeEffectiveness = (attackType, defenseTypes) => {

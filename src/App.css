@@ -76,11 +76,19 @@ h2.selected-pokemon {
     transition: background 0.3s ease-in-out;
 }
 
-/* Botón para cambiar modo oscuro */
-.dark-mode-btn {
+/* Controles de la aplicación */
+.app-controls {
     position: fixed;
     top: 10px;
     right: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Botón para cambiar modo oscuro */
+.dark-mode-btn {
     background: linear-gradient(135deg, #ffcc00, #ff8800);
     border: none;
     padding: 10px 15px;
@@ -88,31 +96,55 @@ h2.selected-pokemon {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 1000;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* RESPONSIVE DARK MODE BUTTON */
+/* Botón de sonido */
+.sound-btn {
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    border: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVE CONTROLS */
 @media (max-width: 768px) {
-    .dark-mode-btn {
+    .app-controls {
         top: 5px;
         right: 10px;
+        gap: 8px;
+    }
+    
+    .dark-mode-btn,
+    .sound-btn {
         padding: 8px 12px;
         font-size: 0.8rem;
         border-radius: 6px;
-        z-index: 1001;
-        position: fixed;
     }
 }
 
 @media (max-width: 480px) {
-    .dark-mode-btn {
+    .app-controls {
         top: 5px;
         right: 5px;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+    
+    .dark-mode-btn,
+    .sound-btn {
         padding: 6px 8px;
         font-size: 0.7rem;
         border-radius: 4px;
-        z-index: 1001;
-        position: fixed;
     }
 }
 
