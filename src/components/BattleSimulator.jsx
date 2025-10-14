@@ -94,20 +94,36 @@ const BattleSimulator = ({ pokemon1, pokemon2, onBattleEnd }) => {
         return effectiveness;
     };
 
-    // Calcular daño
+    // Calcular daño mejorado y balanceado
     const calculateDamage = (attacker, defender, move) => {
         const attack = attacker.stats[1].base_stat;
         const defense = defender.stats[2].base_stat;
+        const spAttack = attacker.stats[3].base_stat;
+        const spDefense = defender.stats[4].base_stat;
         const basePower = move.power;
         const level = 50; // Nivel fijo para simplicidad
+        
+        // Determinar si es ataque físico o especial
+        const physicalMoves = ['fighting', 'normal', 'flying', 'ground', 'rock', 'bug', 'ghost', 'steel', 'dark'];
+        const isPhysical = physicalMoves.includes(move.type);
+        
+        const effectiveAttack = isPhysical ? attack : spAttack;
+        const effectiveDefense = isPhysical ? defense : spDefense;
         
         // Calcular efectividad
         const effectiveness = calculateTypeEffectiveness(move.type, defender.types.map(t => t.type.name));
         
-        // Fórmula simplificada de daño
-        const damage = Math.floor(((2 * level + 10) / 250) * (attack / defense) * basePower + 2) * effectiveness;
+        // Factor STAB (Same Type Attack Bonus)
+        const stab = attacker.types.some(t => t.type.name === move.type) ? 1.5 : 1;
         
-        return Math.max(1, Math.floor(damage));
+        // Fórmula de daño más balanceada (daño más bajo)
+        const baseDamage = Math.floor(((2 * level + 10) / 250) * (effectiveAttack / effectiveDefense) * basePower + 2);
+        const finalDamage = Math.floor(baseDamage * effectiveness * stab * 0.3); // Reducir daño general
+        
+        // Variación de daño (85%-115%)
+        const variation = Math.random() * 0.3 + 0.85;
+        
+        return Math.max(1, Math.floor(finalDamage * variation));
     };
 
     // Ejecutar movimiento

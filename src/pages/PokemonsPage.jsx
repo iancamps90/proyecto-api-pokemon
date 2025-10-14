@@ -8,6 +8,8 @@ import CompactFilters from "../components/CompactFilters";
 import TeamGenerator from "../components/TeamGenerator";
 import ShinyDetector from "../components/ShinyDetector";
 import BattleSimulator from "../components/BattleSimulator";
+import SpecialAbilities from "../components/SpecialAbilities";
+import EvolutionChain from "../components/EvolutionChain";
 import { useFavorites } from "../context/FavoritesContext";
 import { PokemonContext } from "../context/pokemon.context";
 import { useContext } from "react";
@@ -18,7 +20,7 @@ function PokemonsPage() {
     const [selectedPokemon, setSelectedPokemon] = useState(null);
     const [selectedPokemon2, setSelectedPokemon2] = useState(null);
     const [filteredPokemons, setFilteredPokemons] = useState([]);
-    const [activeTab, setActiveTab] = useState('list'); // 'list', 'team', 'shiny', 'battle'
+    const [activeTab, setActiveTab] = useState('list'); // 'list', 'team', 'shiny', 'battle', 'abilities', 'evolution'
     const [searchTerm, setSearchTerm] = useState('');
 
     // Contextos
@@ -86,25 +88,37 @@ function PokemonsPage() {
                     className={`tab-btn ${activeTab === 'list' ? 'active' : ''}`}
                     onClick={() => setActiveTab('list')}
                 >
-                    📋 Lista de Pokémon
+                    📋 Lista
                 </button>
                 <button 
                     className={`tab-btn ${activeTab === 'team' ? 'active' : ''}`}
                     onClick={() => setActiveTab('team')}
                 >
-                    🎮 Generador de Equipos
+                    🎮 Equipos
                 </button>
                 <button 
                     className={`tab-btn ${activeTab === 'shiny' ? 'active' : ''}`}
                     onClick={() => setActiveTab('shiny')}
                 >
-                    ✨ Shiny Detector
+                    ✨ Shiny
                 </button>
                 <button 
                     className={`tab-btn ${activeTab === 'battle' ? 'active' : ''}`}
                     onClick={() => setActiveTab('battle')}
                 >
-                    ⚔️ Battle Simulator
+                    ⚔️ Batalla
+                </button>
+                <button 
+                    className={`tab-btn ${activeTab === 'abilities' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('abilities')}
+                >
+                    🌟 Habilidades
+                </button>
+                <button 
+                    className={`tab-btn ${activeTab === 'evolution' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('evolution')}
+                >
+                    🔄 Evolución
                 </button>
             </div>
 
@@ -165,6 +179,14 @@ function PokemonsPage() {
                         });
                     }}
                 />
+            )}
+
+            {activeTab === 'abilities' && (
+                <SpecialAbilities pokemon={selectedPokemon} />
+            )}
+
+            {activeTab === 'evolution' && (
+                <EvolutionChain pokemon={selectedPokemon} />
             )}
         </main>
     );

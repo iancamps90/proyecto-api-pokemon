@@ -1,0 +1,396 @@
+/* SRC/COMPONENTS/SPECIALABILITIES.CSS */
+.special-abilities {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
+}
+
+.abilities-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.abilities-header h3 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.abilities-header p {
+    color: #666;
+    font-size: 1rem;
+}
+
+.abilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.ability-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    position: relative;
+    overflow: hidden;
+}
+
+.ability-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.ability-card:hover::before {
+    left: 100%;
+}
+
+.ability-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.ability-icon {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.ability-name {
+    color: #2c3e50;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.ability-description {
+    color: #666;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.ability-cooldown {
+    background: rgba(255, 255, 255, 0.2);
+    color: #2c3e50;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.no-abilities {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+/* MODAL DE DETALLES */
+.ability-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.ability-modal {
+    background: white;
+    border-radius: 20px;
+    padding: 0;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.modal-content {
+    padding: 25px;
+}
+
+.ability-full-description {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.ability-effect {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 4px solid #667eea;
+}
+
+.ability-effect h4 {
+    color: #2c3e50;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.ability-effect p {
+    color: #666;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.ability-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-label {
+    color: #2c3e50;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.stat-value {
+    color: #666;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+.ability-usage {
+    background: rgba(102, 126, 234, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.ability-usage h4 {
+    color: #667eea;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.ability-usage p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .abilities-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .ability-card {
+        padding: 15px;
+    }
+    
+    .ability-name {
+        font-size: 1rem;
+    }
+    
+    .ability-description {
+        font-size: 0.85rem;
+    }
+    
+    .ability-modal {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    .modal-content {
+        padding: 20px;
+    }
+    
+    .ability-stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .special-abilities {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .abilities-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .ability-icon {
+        font-size: 1.5rem;
+    }
+    
+    .ability-name {
+        font-size: 0.95rem;
+    }
+    
+    .ability-description {
+        font-size: 0.8rem;
+    }
+    
+    .modal-header {
+        padding: 15px;
+    }
+    
+    .modal-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .modal-content {
+        padding: 15px;
+    }
+}
+
+/* MODO OSCURO */
+.dark-mode .special-abilities {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .abilities-header h3 {
+    color: #ffffff;
+}
+
+.dark-mode .abilities-header p {
+    color: #ccc;
+}
+
+.dark-mode .ability-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .ability-name {
+    color: #ffffff;
+}
+
+.dark-mode .ability-description {
+    color: #ccc;
+}
+
+.dark-mode .ability-cooldown {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.dark-mode .no-abilities {
+    color: #ccc;
+}
+
+.dark-mode .ability-modal {
+    background: #2c3e50;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .ability-full-description {
+    color: #ffffff;
+}
+
+.dark-mode .ability-effect {
+    background: rgba(255, 255, 255, 0.05);
+    border-left-color: #667eea;
+}
+
+.dark-mode .ability-effect h4 {
+    color: #ffffff;
+}
+
+.dark-mode .ability-effect p {
+    color: #ccc;
+}
+
+.dark-mode .stat-item {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .stat-label {
+    color: #ffffff;
+}
+
+.dark-mode .stat-value {
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .ability-usage {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.3);
+}
+
+.dark-mode .ability-usage h4 {
+    color: #8fa4ff;
+}
+
+.dark-mode .ability-usage p {
+    color: #ccc;
+}
