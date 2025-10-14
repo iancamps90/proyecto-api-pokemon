@@ -1,10 +1,23 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/proyecto-api-pokemon/",  // 📌 Revisa que esto sea EXACTAMENTE igual al nombre de tu repo en GitHub Pages
+  base: '/',
   build: {
-    outDir: "dist",
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+      }
+    }
   },
-});
+  server: {
+    port: 3000,
+    host: true
+  }
+})
