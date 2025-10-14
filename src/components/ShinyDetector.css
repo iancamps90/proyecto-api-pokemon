@@ -431,3 +431,42 @@
 .dark-mode .shiny-tips {
     background: rgba(0, 0, 0, 0.2);
 }
+
+/* FEEDBACK DE DETECCIÓN */
+.detection-feedback {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    animation: feedbackPulse 0.5s ease-in-out;
+}
+
+.detection-feedback.found {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #2c3e50;
+    border: 2px solid #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.detection-feedback.not-found {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ff6b6b;
+    border: 2px solid #ff6b6b;
+    backdrop-filter: blur(10px);
+}
+
+.feedback-icon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+.feedback-text {
+    font-size: 1.1rem;
+}
+
+@keyframes feedbackPulse {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+}

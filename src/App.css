@@ -89,28 +89,28 @@ h2.selected-pokemon {
 
 /* Botón para cambiar modo oscuro */
 .dark-mode-btn {
-    background: linear-gradient(135deg, #ffcc00, #ff8800);
+    background: linear-gradient(135deg, var(--theme-primary, #ffcc00), var(--theme-secondary, #ff8800));
     border: none;
     padding: 10px 15px;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: white;
+    color: var(--theme-text, white);
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 /* Botón de sonido */
 .sound-btn {
-    background: linear-gradient(135deg, #4CAF50, #45a049);
+    background: linear-gradient(135deg, var(--theme-accent, #4CAF50), var(--theme-secondary, #45a049));
     border: none;
     padding: 10px 12px;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    color: white;
+    color: var(--theme-text, white);
     font-weight: 600;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
@@ -118,9 +118,11 @@ h2.selected-pokemon {
 /* RESPONSIVE CONTROLS */
 @media (max-width: 768px) {
     .app-controls {
-        top: 5px;
+        top: 70px; /* Debajo del navbar */
         right: 10px;
         gap: 8px;
+        flex-direction: column;
+        align-items: flex-end;
     }
     
     .dark-mode-btn,
@@ -128,16 +130,17 @@ h2.selected-pokemon {
         padding: 8px 12px;
         font-size: 0.8rem;
         border-radius: 6px;
+        min-width: 120px;
     }
 }
 
 @media (max-width: 480px) {
     .app-controls {
-        top: 5px;
+        top: 60px; /* Debajo del navbar móvil */
         right: 5px;
         gap: 6px;
-        flex-wrap: wrap;
-        justify-content: flex-end;
+        flex-direction: column;
+        align-items: flex-end;
     }
     
     .dark-mode-btn,
@@ -145,12 +148,15 @@ h2.selected-pokemon {
         padding: 6px 8px;
         font-size: 0.7rem;
         border-radius: 4px;
+        min-width: 100px;
     }
 }
 
-.dark-mode-btn:hover {
-    background: linear-gradient(135deg, #ffaa00, #ff5500);
-    transform: scale(1.1);
+.dark-mode-btn:hover,
+.sound-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    filter: brightness(1.1);
 }
 
 /* 🌙 Estilos adicionales para modo oscuro */

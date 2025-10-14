@@ -12,6 +12,7 @@ const ShinyDetector = ({ pokemon, onShinyFound }) => {
     const [detectionAttempts, setDetectionAttempts] = useState(0);
     const [showShinyAnimation, setShowShinyAnimation] = useState(false);
     const [shinyStreak, setShinyStreak] = useState(0);
+    const [lastDetectionResult, setLastDetectionResult] = useState(null);
 
     // Efectos visuales para Shiny
     const shinyEffects = [
@@ -48,6 +49,7 @@ const ShinyDetector = ({ pokemon, onShinyFound }) => {
             setIsShiny(true);
             setShinyStreak(prev => prev + 1);
             setShowShinyAnimation(true);
+            setLastDetectionResult('found');
             
             // Sonido especial de Shiny encontrado
             playSound('shinyFound');
@@ -63,9 +65,15 @@ const ShinyDetector = ({ pokemon, onShinyFound }) => {
             }, 3000);
         } else {
             // Mostrar mensaje de que no es Shiny
+            setLastDetectionResult('not-found');
             setTimeout(() => {
                 console.log(`❌ ${pokemon.name} no es Shiny. Sigue intentando!`);
             }, 500);
+            
+            // Limpiar resultado después de 2 segundos
+            setTimeout(() => {
+                setLastDetectionResult(null);
+            }, 2000);
         }
         
         return isShinyDetected;
@@ -223,6 +231,29 @@ const ShinyDetector = ({ pokemon, onShinyFound }) => {
                     </div>
                 </div>
             </div>
+
+            {/* Feedback de detección */}
+            {lastDetectionResult && (
+                <motion.div 
+                    className={`detection-feedback ${lastDetectionResult}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    {lastDetectionResult === 'found' ? (
+                        <div className="feedback-found">
+                            <span className="feedback-icon">🎉</span>
+                            <span className="feedback-text">¡SHINY ENCONTRADO!</span>
+                        </div>
+                    ) : (
+                        <div className="feedback-not-found">
+                            <span className="feedback-icon">❌</span>
+                            <span className="feedback-text">No es Shiny. ¡Sigue intentando!</span>
+                        </div>
+                    )}
+                </motion.div>
+            )}
 
             <div className="detector-controls">
                 <motion.button 

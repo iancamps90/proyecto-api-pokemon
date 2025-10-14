@@ -73,24 +73,24 @@ function PokemonList({
                                 openModal(pokemon);
                             }}
                         />
-                        <div className="pokemon-actions">
-                            <button 
-                                onClick={() => selectPokemon2 && selectPokemon2(pokemon)}
-                                className="action-btn slot2-btn"
-                                title="Seleccionar para slot 2"
-                            >
-                                🎯 Slot 2
-                            </button>
-                            {onToggleFavorite && (
-                                <button 
-                                    onClick={() => onToggleFavorite(pokemon)}
-                                    className={`action-btn favorite-btn ${isFavorite && isFavorite(pokemon.id) ? 'active' : ''}`}
-                                    title="Añadir a favoritos"
-                                >
-                                    {isFavorite && isFavorite(pokemon.id) ? '❤️' : '🤍'}
-                                </button>
-                            )}
-                        </div>
+                                <div className="pokemon-actions">
+                                    <button 
+                                        onClick={() => selectPokemon2 && selectPokemon2(pokemon)}
+                                        className="action-btn slot2-btn"
+                                        title="Seleccionar para slot 2 (Battle)"
+                                    >
+                                        ⚔️ Battle
+                                    </button>
+                                    {onToggleFavorite && (
+                                        <button 
+                                            onClick={() => onToggleFavorite(pokemon)}
+                                            className={`action-btn favorite-btn ${isFavorite && isFavorite(pokemon.id) ? 'active' : ''}`}
+                                            title="Añadir a favoritos"
+                                        >
+                                            {isFavorite && isFavorite(pokemon.id) ? '❤️' : '🤍'}
+                                        </button>
+                                    )}
+                                </div>
                     </div>
                 ))}
             </div>
