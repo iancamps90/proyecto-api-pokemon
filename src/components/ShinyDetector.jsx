@@ -17,16 +17,26 @@ const ShinyDetector = ({ pokemon, onShinyFound }) => {
 
     // Detectar si un Pokémon es Shiny basado en ID y algoritmo
     const detectShiny = () => {
-        if (!pokemon) return false;
+        if (!pokemon) {
+            console.log("No hay Pokémon seleccionado");
+            return false;
+        }
         
         setDetectionAttempts(prev => prev + 1);
         
         // Algoritmo mejorado de detección de Shiny
         // Usar el ID del Pokémon como semilla para consistencia
-        const seed = pokemon.id + detectionAttempts;
+        const seed = pokemon.id + detectionAttempts + Date.now();
         const random = Math.sin(seed * 12345) * 10000;
         const normalizedRandom = (random - Math.floor(random));
         const isShinyDetected = normalizedRandom < shinyChance;
+        
+        console.log(`Detectando Shiny para ${pokemon.name}:`, {
+            seed,
+            normalizedRandom,
+            shinyChance,
+            isShinyDetected
+        });
         
         if (isShinyDetected) {
             setIsShiny(true);

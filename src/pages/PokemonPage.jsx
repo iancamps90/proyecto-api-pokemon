@@ -40,41 +40,98 @@ function PokemonPage() {
 
     return (
         <section id="pokemon-page">
+            {/* Botón de volver */}
+            <div className="back-navigation">
+                <button 
+                    onClick={() => navigate('/pokemons')} 
+                    className="back-button"
+                    title="Volver a la lista de Pokémon"
+                >
+                    ← Volver a la lista
+                </button>
+            </div>
+
             {error ? (
                 // Si ocurre un error, mostramos el mensaje de error
-                <div>
-                    <h2>No se ha encontrado ningún Pokémon</h2>
-                    <Link to="/pokemons">Volver a la lista de pokémons</Link>
+                <div className="error-container">
+                    <h2>❌ No se ha encontrado ningún Pokémon</h2>
+                    <p>El Pokémon con ID {id} no existe.</p>
+                    <Link to="/pokemons" className="back-link">
+                        🏠 Volver a la lista de Pokémon
+                    </Link>
                 </div>
             ) : pokemon ? (
                 // Si hay datos del Pokémon, los mostramos
-                <div>
-                    <h2>{pokemon.name.toUpperCase()}</h2>
-                    <img
-                        src={pokemon.sprites.front_default}
-                        alt="pokemon img"
-                        className="pokemon-img"
-                    />
-                    <h3>Vida: {pokemon.stats[0].base_stat}</h3>
-                    <h3>Ataque: {pokemon.stats[1].base_stat}</h3>
-                    <h3>Defensa: {pokemon.stats[2].base_stat}</h3>
+                <div className="pokemon-details">
+                    <div className="pokemon-header">
+                        <h2>{pokemon.name.toUpperCase()}</h2>
+                        <span className="pokemon-id">#{pokemon.id.toString().padStart(3, '0')}</span>
+                    </div>
+                    
+                    <div className="pokemon-image-container">
+                        <img
+                            src={pokemon.sprites.front_default}
+                            alt={`${pokemon.name} imagen`}
+                            className="pokemon-img"
+                        />
+                        {pokemon.sprites.back_default && (
+                            <img
+                                src={pokemon.sprites.back_default}
+                                alt={`${pokemon.name} espalda`}
+                                className="pokemon-img back"
+                            />
+                        )}
+                    </div>
+
+                    <div className="pokemon-info">
+                        <div className="types">
+                            <h3>Tipos:</h3>
+                            {pokemon.types.map((type, index) => (
+                                <span key={index} className={`type-badge ${type.type.name}`}>
+                                    {type.type.name.toUpperCase()}
+                                </span>
+                            ))}
+                        </div>
+
+                        <div className="stats">
+                            <h3>Estadísticas:</h3>
+                            {pokemon.stats.map((stat, index) => (
+                                <div key={index} className="stat-item">
+                                    <span className="stat-name">{stat.stat.name.replace('-', ' ').toUpperCase()}:</span>
+                                    <div className="stat-bar">
+                                        <div 
+                                            className="stat-fill" 
+                                            style={{ width: `${Math.min(100, (stat.base_stat / 150) * 100)}%` }}
+                                        ></div>
+                                    </div>
+                                    <span className="stat-value">{stat.base_stat}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             ) : (
                 // Si no hay datos de Pokémon y no hay error, mostramos "Cargando..."
-                <div>
-                    <h2>Cargando...</h2>
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <h2>Cargando Pokémon...</h2>
                 </div>
             )}
 
             {/* Botones de navegación */}
-            <div className="link-buttons">
-                <button onClick={goToPrevious} className="nav-button">
-                    ⬅️ Anterior
-                </button>
-                <button onClick={goToNext} className="nav-button">
-                    Siguiente ➡️
-                </button>
-            </div>
+            {pokemon && (
+                <div className="link-buttons">
+                    <button onClick={goToPrevious} className="nav-button">
+                        ⬅️ Anterior
+                    </button>
+                    <Link to="/pokemons" className="nav-button home-button">
+                        🏠 Lista
+                    </Link>
+                    <button onClick={goToNext} className="nav-button">
+                        Siguiente ➡️
+                    </button>
+                </div>
+            )}
         </section>
     );
 }
